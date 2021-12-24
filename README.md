@@ -1,4 +1,4 @@
-- 👋 Hi, I’m @pbickerton
+- 👋 Hi, I’m @peter bickerton
 - 👀 I’m interested in Data Engineering, Machine Learning, AI, Java
 - 🌱 I’m currently learning Github, SSIS, 
 - 💞️ I’m looking to collaborate on anything related to above
