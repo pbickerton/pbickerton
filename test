@@ -1,0 +1,71 @@
+import pandas as pd
+
+import xml.etree.ElementTree as ET
+
+ 
+
+# Prompt for the Excel file containing metadata
+
+excel_file = input("Enter the path to the Excel file containing metadata: ")
+
+ 
+
+# Read the Excel file
+
+metadata_df = pd.read_excel(excel_file, engine='openpyxl')
+
+ 
+
+# Prompt for the XML file to be modified
+
+xml_file = input("Enter the path to the XML file to be modified: ")
+
+ 
+
+# Parse the XML file
+
+tree = ET.parse(xml_file)
+
+root = tree.getroot()
+
+ 
+
+# Replace metadata in the XML file with data from the Excel file
+
+for index, row in metadata_df.iterrows():
+
+    for element in root.iter():
+
+        if element.tag in row:
+
+            element.text = str(row[element.tag])
+
+ 
+
+# Prompt for the datasource name
+
+datasource_name = input("Enter the datasource name: ")
+
+ 
+
+# Save the modified XML file with the datasource name
+
+new_xml_file = f"{datasource_name}.xml"
+
+tree.write(new_xml_file)
+
+print(f"New XML file created: {new_xml_file}")
+
+ 
+
+# Prompt if user wants to recreate resource file
+
+recreate_resource = input("Do you want to recreate resource file? (Y/N): ")
+
+ 
+
+if recreate_resource.upper() == 'Y':
+
+    # Prompt for the resource metadata Excel file
+
+    resource_metadata_file = input("Enter the path to the resource metadata Excel file: ")
